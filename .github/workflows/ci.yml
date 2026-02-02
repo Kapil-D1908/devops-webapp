@@ -18,3 +18,10 @@ jobs:
 
       - name: Build Complete
         run: echo "Build completed successfully 🚀"
+
+      - name: Slack Notification
+        if: always()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":"CI Build Completed for devops-webapp 🚀"}' \
+          ${{ secrets.SLACK_WEBHOOK }}
